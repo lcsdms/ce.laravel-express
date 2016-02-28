@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('produtos','TestController@index');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
