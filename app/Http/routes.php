@@ -11,11 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'TestController@index');
 
-Route::get('produtos','TestController@index');
+Route::get('phpinfo','TestController@phpinfo');
 /*
 |--------------------------------------------------------------------------
 | Application Routes

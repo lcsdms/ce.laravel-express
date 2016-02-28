@@ -6,11 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Produto;
 
 class TestController extends Controller
 {
     public function index(){
-        $nome ="Lucas";
-        return view('produtos', ['nome' => $nome]);
+        return view('index');
+    }
+
+    public function phpinfo(){
+        phpinfo();
     }
 }
