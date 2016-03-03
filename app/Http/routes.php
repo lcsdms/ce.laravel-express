@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', 'TestController@index');
-
-Route::get('phpinfo','TestController@phpinfo');
+Route::get('/', 'BlogController@index');
+Route::get('about', 'BlogController@about');
+Route::get('phpinfo','BlogController@phpinfo');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
