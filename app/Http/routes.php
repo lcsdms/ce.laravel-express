@@ -15,6 +15,7 @@ Route::get('/', 'BlogController@index');
 Route::get('post/{id}', 'BlogController@post');
 Route::get('about', 'BlogController@about');
 Route::get('phpinfo','BlogController@phpinfo');
+Route::get('blog','PostsController@index');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
