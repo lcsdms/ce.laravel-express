@@ -11,4 +11,9 @@ class Post extends Model
         'title',
         'content'
         ];
+
+    //Relação dos models, indicando que um post pode ter varios comentários
+    public function comments(){
+        return $this->hasMany('App\Comments');
+    }
 }
