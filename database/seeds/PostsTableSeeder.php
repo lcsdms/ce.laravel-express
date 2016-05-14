@@ -12,7 +12,8 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        Post::truncate();
+//        Comentado truncate por conta das fk criadas
+//        Post::truncate();
         factory('App\Post',15)->create();
     }
 }
