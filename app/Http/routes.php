@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+    Route::get('/','PostsController@index');
 
 
 
@@ -27,8 +27,17 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::get('/','PostsController@index');
-    Route::get('admin','PostsAdminController@index');
-    Route::get('admin/create','PostsAdminController@create');
+    //Rotas nomeadas para facilitar o uso da aplicação
+
+    //Rota da página inicial da administração
+    Route::get('admin/posts',[ 'as' => 'admin.posts.index', 'uses' => 'PostsAdminController@index']);
+
+    //Rota da página de Criação de Um Post
+    Route::get('admin/posts/create',['as' => 'admin.posts.create', 'uses' => 'PostsAdminController@create']);
+
+    //Rota post, para gravação das informações do POST
+    Route::post('admin/posts/store',['as' => 'admin.posts.store', 'uses' => 'PostsAdminController@store']);
+
+
     
 });
