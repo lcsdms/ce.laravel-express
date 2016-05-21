@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\PostRequest;
 use App\Post;
-
-use Illuminate\Http\Request;
 
 
 class PostsAdminController extends Controller
@@ -28,7 +27,7 @@ class PostsAdminController extends Controller
     }
 
     //Função do controller para gravação dos dados, que vai receber um request POST
-    public function store(Request $request){
+    public function store(PostRequest $request){
 
         //dd($request->all()); //Função para executar o dump do request e mostrar na tela, matando a aplicação
 
