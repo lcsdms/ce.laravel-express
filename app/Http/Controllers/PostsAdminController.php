@@ -17,7 +17,7 @@ class PostsAdminController extends Controller
     }
     public function index(){
         
-        $posts = $this->post->all();
+        $posts = $this->post->paginate(10);
         return view('admin.posts.index',compact('posts'));
     }
 }
