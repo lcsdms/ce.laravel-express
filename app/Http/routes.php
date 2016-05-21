@@ -11,8 +11,7 @@
 |
 */
 
-Route::get('/','PostsController@index');
-Route::get('admin','PostsAdminController@index');
+
 
 
 /*
@@ -27,5 +26,9 @@ Route::get('admin','PostsAdminController@index');
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+
+    Route::get('/','PostsController@index');
+    Route::get('admin','PostsAdminController@index');
+    Route::get('admin/create','PostsAdminController@create');
+    
 });
