@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', 'BlogController@index');
-Route::get('post/{id}', 'BlogController@post');
-Route::get('about', 'BlogController@about');
-Route::get('phpinfo','BlogController@phpinfo');
+Route::get('/','PostsController@index');
 Route::get('blog','PostsController@index');
 /*
 |--------------------------------------------------------------------------
