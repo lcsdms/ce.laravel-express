@@ -28,22 +28,25 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-    //Rotas nomeadas para facilitar o uso da aplicação
+    //Prefixo de Rotas de Administração
+    Route::group(['prefix' => 'admin'], function (){
 
-    //Rota da página inicial da administração
-    Route::get('admin/posts',[ 'as' => 'admin.posts.index', 'uses' => 'PostsAdminController@index']);
+        //Rotas de Posts
+        Route::group(['prefix' => 'posts'], function(){
+            //listagem de posts
+            Route::get('',[ 'as' => 'admin.posts.index', 'uses' => 'PostsAdminController@index']);
+            //Rota da página de Criação de Um Post
+            Route::get('create',['as' => 'admin.posts.create', 'uses' => 'PostsAdminController@create']);
+            //Rota post, para gravação das informações do POST
+            Route::post('store',['as' => 'admin.posts.store', 'uses' => 'PostsAdminController@store']);
+            //Rota para exibição da página de edição
+            Route::get('edit/{id}', ['as' => 'admin.posts.edit', 'uses' => 'PostsAdminController@edit']);
+            //Rota post para update das informações
+            Route::put('update/{id}',['as' => 'admin.posts.update', 'uses' => 'PostsAdminController@update']);
+            //Rota destroy para deletar o registro da base de dados
+            Route::get('destroy/{id}', ['as' => 'admin.posts.destroy', 'uses' => 'PostsAdminController@destroy']);
+        });
 
-    //Rota da página de Criação de Um Post
-    Route::get('admin/posts/create',['as' => 'admin.posts.create', 'uses' => 'PostsAdminController@create']);
-
-    //Rota post, para gravação das informações do POST
-    Route::post('admin/posts/store',['as' => 'admin.posts.store', 'uses' => 'PostsAdminController@store']);
-
-    //Rota para exibição da página de edição
-    Route::get('admin/posts/edit/{id}', ['as' => 'admin.posts.edit', 'uses' => 'PostsAdminController@edit']);
-
-    Route::put('admin/posts/update/{id}',['as' => 'admin.posts.update', 'uses' => 'PostsAdminController@update']);
-
-
+    });
     
 });

@@ -50,4 +50,10 @@ class PostsAdminController extends Controller
         $this->post->find($id)->update($request->all());
         return redirect()->route('admin.posts.index');
     }
+
+    public function destroy($id){
+        //TODO necessário verificar a destruição de elements vinculados, neste caso os comentarios
+        $this->post->find($id)->delete();
+        return redirect()->route('admin.posts.index');
+    }
 }
