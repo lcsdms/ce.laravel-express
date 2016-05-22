@@ -14,6 +14,7 @@
 
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -37,6 +38,11 @@ Route::group(['middleware' => ['web']], function () {
 
     //Rota post, para gravação das informações do POST
     Route::post('admin/posts/store',['as' => 'admin.posts.store', 'uses' => 'PostsAdminController@store']);
+
+    //Rota para exibição da página de edição
+    Route::get('admin/posts/edit/{id}', ['as' => 'admin.posts.edit', 'uses' => 'PostsAdminController@edit']);
+
+    Route::put('admin/posts/update/{id}',['as' => 'admin.posts.update', 'uses' => 'PostsAdminController@update']);
 
 
     

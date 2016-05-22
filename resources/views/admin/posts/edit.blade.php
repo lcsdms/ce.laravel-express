@@ -4,7 +4,7 @@
     Administração dos Posts
 @endsection
 @section('content')
-    <h1>Create new Post</h1>
+    <h1>Alterar Post {{ $post->title }}</h1>
 
     {{-- Exibição de erros nas páginas caso seja apresentado algum erro de validação por exemplo --}}
     @if($errors->any())
@@ -15,11 +15,11 @@
         </ul>
     @endif
 
-    {!! Form::open(['route' => 'admin.posts.store']) !!}
+    {!! Form::model($post, ['route' => ['admin.posts.update', $post->id], 'method' => 'put']) !!}
 
     @include('admin.posts._form')
     
-    {!! Form::submit('Salvar Post', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit('Salvar alterações', ['class' => 'btn btn-primary']) !!}
         
     {!! Form::close() !!}
     

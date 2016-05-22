@@ -37,4 +37,17 @@ class PostsAdminController extends Controller
         //Apos a criação, redireciona para a página inicial
         return redirect()->route('admin.posts.index');
     }
+
+    //Exibição da página de edição de um produto em especifico
+    public function edit($id){
+        $post = $this->post->find($id);
+        return view('admin.posts.edit',compact('post'));
+    }
+
+    //Método para alteração de um produto em especifico, e após a alteração retorna para a listagem de produtos
+    public function update($id, PostRequest $request){
+
+        $this->post->find($id)->update($request->all());
+        return redirect()->route('admin.posts.index');
+    }
 }
