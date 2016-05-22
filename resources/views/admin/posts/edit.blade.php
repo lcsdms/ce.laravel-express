@@ -8,7 +8,7 @@
 
     {{-- Exibição de erros nas páginas caso seja apresentado algum erro de validação por exemplo --}}
     @if($errors->any())
-        <ul class="alert">
+        <ul class="alert alert-danger">
             @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
