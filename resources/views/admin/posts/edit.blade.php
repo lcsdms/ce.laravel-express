@@ -18,6 +18,9 @@
     {!! Form::model($post, ['route' => ['admin.posts.update', $post->id], 'method' => 'put']) !!}
 
     @include('admin.posts._form')
+
+    {!! Form::label('tags', 'Tags:', ['class' => 'control-label']) !!}
+    {!! Form::textarea('tags', $post->tagList , ['class' => 'form-control']) !!}
     
     {!! Form::submit('Salvar alterações', ['class' => 'btn btn-primary']) !!}
         

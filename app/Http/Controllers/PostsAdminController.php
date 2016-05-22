@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Post;
+use App\Tag;
 
 
 class PostsAdminController extends Controller
@@ -29,10 +30,12 @@ class PostsAdminController extends Controller
     //Função do controller para gravação dos dados, que vai receber um request POST
     public function store(PostRequest $request){
 
-        //dd($request->all()); //Função para executar o dump do request e mostrar na tela, matando a aplicação
+
+        //dd($tagsIDs); //Função para executar o dump do request e mostrar na tela, matando a aplicação
 
         //Cria um novo post com base no request enviado
-        $this->post->create($request->all());
+        $post = $this->post->create($request->all());
+        $post->tags()->sync($this->getTagsIDs($request->tags));
 
         //Apos a criação, redireciona para a página inicial
         return redirect()->route('admin.posts.index');
@@ -48,6 +51,8 @@ class PostsAdminController extends Controller
     public function update($id, PostRequest $request){
 
         $this->post->find($id)->update($request->all());
+        $post = $this->post->find($id);
+        $post->tags()->sync($this->getTagsIDs($request->tags));
         return redirect()->route('admin.posts.index');
     }
 
@@ -55,5 +60,18 @@ class PostsAdminController extends Controller
         //TODO necessário verificar a destruição de elements vinculados, neste caso os comentarios
         $this->post->find($id)->delete();
         return redirect()->route('admin.posts.index');
+    }
+
+    private function getTagsIDs($tags){
+        //Trata os arrays, e limpa os mesmos
+        //Explode as tags para Array, faz trim, e depois filter para limpar as tags
+        $tagList = array_filter(array_map('trim',explode(',',$tags)));
+
+        $tagsIDs = [];
+        foreach($tagList as $tagName){
+            $tagsIDs[] = Tag::firstOrCreate(['name' => $tagName])->id;
+        }
+
+        return $tagsIDs;
     }
 }

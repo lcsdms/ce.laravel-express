@@ -19,6 +19,9 @@
 
     @include('admin.posts._form')
     
+    {!! Form::label('tags', 'Tags:', ['class' => 'control-label']) !!}
+    {!! Form::textarea('tags', null, ['class' => 'form-control']) !!}
+    
     {!! Form::submit('Salvar Post', ['class' => 'btn btn-primary']) !!}
         
     {!! Form::close() !!}

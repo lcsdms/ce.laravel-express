@@ -20,4 +20,15 @@ class Post extends Model
     public function tags(){
         return $this->belongsToMany('App\Tag','posts_tags');
     }
+
+
+    /**
+     * Traz os nomes das tags relacionadas ao post separadas por virgula e espaço
+     * @return string - Tags do post separados por virgula e espaço
+     */
+    //as palavras get e Attribute são obrigatorias
+    public function getTagListAttribute(){
+        $tags = $this->tags()->lists('name')->all();
+        return implode(', ', $tags);
+    }
 }
